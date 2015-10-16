@@ -83,12 +83,15 @@ bool PlatfBufferManager::blit(buffer_handle_t srcHandle, buffer_handle_t destHan
         return false;
     }
 
-
     if (!async) {
         sync_wait(fenceFd, -1);
     }
     close(fenceFd);
+<<<<<<< HEAD
+
+=======
 #endif
+>>>>>>> 2855d50... hwc: merrifield_plus: Add legacy LP blob support
     return true;
 }
 
