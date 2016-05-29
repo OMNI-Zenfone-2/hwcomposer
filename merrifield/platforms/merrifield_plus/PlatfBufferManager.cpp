@@ -60,13 +60,13 @@ BufferMapper* PlatfBufferManager::createBufferMapper(gralloc_module_t *module,
 }
 
 bool PlatfBufferManager::blit(buffer_handle_t srcHandle, buffer_handle_t destHandle,
-                              const crop_t& destRect, bool filter, bool async)
+                              const crop_t& destRect, bool async)
 
 {
     IMG_gralloc_module_public_t *imgGrallocModule = (IMG_gralloc_module_public_t *) mGrallocModule;
     int fenceFd;
 
-#ifdef LP_BLOBS
+#ifdef ASUS_ZENFONE2_LP_BLOBS
     if (imgGrallocModule->Blit(imgGrallocModule, srcHandle,
                                 destHandle,
                                 destRect.w, destRect.h, destRect.x,
@@ -83,12 +83,12 @@ bool PlatfBufferManager::blit(buffer_handle_t srcHandle, buffer_handle_t destHan
         return false;
     }
 
-
     if (!async) {
         sync_wait(fenceFd, -1);
     }
     close(fenceFd);
 #endif
+
     return true;
 }
 
